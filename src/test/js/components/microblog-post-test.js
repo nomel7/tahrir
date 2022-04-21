@@ -3,7 +3,7 @@
 import UIActions from '../../../main/js/actions/tahrir-ui-actions';
 import React from 'react';
 import MicroblogPost from '../../../main/js/components/microblog-post';
-import {mount} from 'enzyme';
+import {mount} from '../enzyme-adapter';
 
 describe('MicroblogPost', () => {
     let wrapper;

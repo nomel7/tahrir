@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {mount} from '../enzyme-adapter';
 import App from '../../../../src/main/js/components/app'
 import Actions from '../../../../src/main/js/actions/tahrir-api-actions'
 

@@ -42,4 +42,4 @@ class MicroblogPage extends Reflux.Component {
     }
 }
 
-module.exports = MicroblogPage;
+export default MicroblogPage;

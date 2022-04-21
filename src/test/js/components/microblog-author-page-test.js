@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {mount} from 'enzyme';
+import {mount} from '../enzyme-adapter';
 import MicroblogAuthorPage from '../../../../src/main/js/components/microblog-author-page';
 
 describe('MicroblogAuthorPage', () => {

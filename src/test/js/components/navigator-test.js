@@ -1,9 +1,9 @@
 'use strict';
 
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow} from '../enzyme-adapter';
 import Navigator from '../../../../src/main/js/components/navigator'
-import {mentionsFilter} from '../../../../src/main/js/helpers/microblog-filter'
+import {mentionsFilter} from '../../../main/js/helpers/microblog-filter'
 
 describe('Navigator', () => {
     let wrapper;

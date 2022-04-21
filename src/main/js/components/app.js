@@ -28,4 +28,4 @@ class App extends Reflux.Component {
     }
 }
 
-module.exports = App;
+export default App;

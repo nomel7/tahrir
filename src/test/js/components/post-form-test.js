@@ -3,7 +3,7 @@
 import React from 'react';
 import PostForm from '../../../main/js/components/post-form';
 import Actions from '../../../main/js/actions/tahrir-api-actions';
-import {mount} from 'enzyme';
+import {mount} from '../enzyme-adapter';
 
 describe('PostForm', () => {
     let wrapper;

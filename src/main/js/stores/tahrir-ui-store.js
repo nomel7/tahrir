@@ -17,4 +17,4 @@ class TahrirApiStore extends Reflux.Store {
     }
 }
 
-module.exports = TahrirApiStore;
+export default TahrirApiStore;

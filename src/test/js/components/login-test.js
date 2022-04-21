@@ -3,8 +3,8 @@
 import Actions from '../../../main/js/actions/tahrir-api-actions';
 import React from 'react';
 import Login from '../../../../src/main/js/components/login'
-import Button from "react-bootstrap/lib/Button";
-import {mount} from 'enzyme';
+import Button from "react-bootstrap/Button";
+import {mount} from '../enzyme-adapter';
 
 describe('Login', () => {
     let wrapper;

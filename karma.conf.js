@@ -1,32 +1,41 @@
+const {tmpdir} = require("os");
+const path = require("path");
+
 module.exports = function (config) {
     config.set({
         browsers: ['Chrome'],
         singleRun: true,
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'webpack'],
+        plugins: [
+            'karma-webpack',
+            'karma-jasmine',
+            'karma-chrome-launcher',
+            'karma-sourcemap-loader'
+        ],
         files: [
-            {pattern: 'tests.webpack.js'}
+            {pattern: 'src/test/**/*test.js'}
         ],
         preprocessors: {
-            'tests.webpack.js': ['webpack', 'sourcemap']
+            'src/test/**/*test.js': ['webpack', 'sourcemap']
         },
         reporters: ['dots'],
         webpack: {
-            devtool: 'inline-source-map',
-            module: {
-                loaders: [
-                    {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: { presets: ['airbnb', 'es2015', 'react', 'stage-0']}},
-                    {test: /\.json$/, loader: 'json-loader'}
-                ]
+            mode: 'development',
+            output: {
+                filename: '[name].js',
+                path: path.join(tmpdir(), '_karma_webpack_') + Math.floor(Math.random() * 1000000),
             },
-            externals: {
-                'cheerio': 'window',
-                'react/addons': true,
-                'react/lib/ExecutionEnvironment': true,
-                'react/lib/ReactContext': true
-            }
-        },
-        webpackServer: {
-            noInfo: true
+            module: {
+                rules: [
+                    { test: /\.js?$/, exclude: /node_modules/, loader: 'babel-loader' },
+                ],
+            },
+            stats: {
+                modules: false,
+                colors: true,
+            },
+            watch: true,
+            plugins: []
         }
     });
 };

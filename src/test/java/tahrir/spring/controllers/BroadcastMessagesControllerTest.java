@@ -69,7 +69,7 @@ public class BroadcastMessagesControllerTest {
 
         MvcResult requestResult = mvc.perform(MockMvcRequestBuilders.get("/api/broadcastMessages"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         String json = requestResult.getResponse().getContentAsString();
         Type listType = new TypeToken<ArrayList<RestBroadcastMessage>>(){}.getType();

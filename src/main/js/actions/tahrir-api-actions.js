@@ -9,4 +9,4 @@ const TahrirActions = Reflux.createActions([
     'postIdentity'
 ]);
 
-module.exports = TahrirActions;
+export default TahrirActions;

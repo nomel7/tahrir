@@ -3,8 +3,8 @@
 import React from "react";
 import Reflux from "reflux";
 import MicroblogPage from "./microblog-page"
-import Nav from "react-bootstrap/lib/Nav";
-import NavItem from "react-bootstrap/lib/NavItem";
+import Nav from "react-bootstrap/Nav";
+import NavItem from "react-bootstrap/NavItem";
 import TahrirStore from '../stores/tahrir-api-store';
 import {mentionsFilter} from "../helpers/microblog-filter";
 
@@ -47,5 +47,4 @@ class Navigator extends Reflux.Component {
     }
 }
 
-module.exports = Navigator;
-
+export default Navigator;

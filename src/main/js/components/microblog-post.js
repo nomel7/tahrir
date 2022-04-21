@@ -3,10 +3,9 @@
 import React from "react";
 import UIActions from '../actions/tahrir-ui-actions';
 import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en.json'
 
-TimeAgo.locale(require('javascript-time-ago/locales/en'));
-require('javascript-time-ago/intl-messageformat-global');
-require('intl-messageformat/dist/locale-data/en');
+TimeAgo.addDefaultLocale(en);
 
 class MicroblogPost extends React.Component {
     onAuthorClick = (nickname) => {
@@ -16,8 +15,7 @@ class MicroblogPost extends React.Component {
     render() {
         const {message, nickname, timeCreated} = this.props;
         const timeAgo = new TimeAgo('en-US');
-        const twitterStyle = timeAgo.style.twitter();
-        const readableTime = timeAgo.format(new Date(timeCreated), twitterStyle);
+        const readableTime = timeAgo.format(new Date(timeCreated), 'twitter');
 
         return (
             <div className="microblog-post">
@@ -31,4 +29,4 @@ class MicroblogPost extends React.Component {
     }
 }
 
-module.exports = MicroblogPost;
+export default MicroblogPost;

@@ -1,10 +1,10 @@
 'use strict';
 
 import React from "react";
-import Form from "react-bootstrap/lib/Form";
-import FormGroup from "react-bootstrap/lib/FormGroup";
-import FormControl from "react-bootstrap/lib/FormControl";
-import Button from "react-bootstrap/lib/Button";
+import Form from "react-bootstrap/Form";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 import Actions from "../actions/tahrir-api-actions";
 
 class Login extends React.Component {
@@ -36,4 +36,4 @@ class Login extends React.Component {
     }
 }
 
-module.exports = Login;
+export default Login;

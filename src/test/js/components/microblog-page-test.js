@@ -4,7 +4,7 @@ import APIActions from '../../../main/js/actions/tahrir-api-actions';
 import UIActions from '../../../main/js/actions/tahrir-ui-actions';
 import React from 'react';
 import MicroblogPage from '../../../main/js/components/microblog-page';
-import {mount} from 'enzyme';
+import {mount} from '../enzyme-adapter';
 
 describe('MicroblogPage', () => {
     let wrapper;

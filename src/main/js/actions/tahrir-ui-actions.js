@@ -6,5 +6,4 @@ const TahrirUIActions = Reflux.createActions([
     'updateAuthorPage'
 ]);
 
-module.exports = TahrirUIActions;
-
+export default TahrirUIActions;

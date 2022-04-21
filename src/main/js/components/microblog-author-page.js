@@ -2,7 +2,7 @@
 
 import Reflux from "reflux";
 import React from "react";
-import Modal from "react-bootstrap/lib/Modal";
+import Modal from "react-bootstrap/Modal";
 import MicroblogPost from "./microblog-post";
 import TahrirUIStore from "../stores/tahrir-ui-store"
 import {authorFilter} from "../helpers/microblog-filter"
@@ -42,5 +42,4 @@ class MicroblogAuthorPage extends Reflux.Component {
     }
 }
 
-module.exports = MicroblogAuthorPage;
-
+export default MicroblogAuthorPage;

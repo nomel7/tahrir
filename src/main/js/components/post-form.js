@@ -1,10 +1,10 @@
 'use strict';
 
 import React from "react";
-import FormGroup from "react-bootstrap/lib/FormGroup";
-import FormControl from "react-bootstrap/lib/FormControl";
-import Form from "react-bootstrap/lib/Form";
-import Button from "react-bootstrap/lib/Button";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Actions from "../actions/tahrir-api-actions";
 
 class PostForm extends React.Component {
@@ -40,4 +40,4 @@ class PostForm extends React.Component {
     }
 }
 
-module.exports = PostForm;
+export default PostForm;
