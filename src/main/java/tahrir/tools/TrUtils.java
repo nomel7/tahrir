@@ -41,10 +41,10 @@ public class TrUtils {
 	static {
 		GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapterFactory(new OptionalTypeAdapterFactory());
-		builder.registerTypeAdapter(RSAPublicKey.class, new RSAPublicKeySerializer());
-		builder.registerTypeAdapter(RSAPublicKey.class, new RSAPublicKeyDeserializer());
-        builder.registerTypeAdapter(RSAPrivateKey.class, new GsonSerializers.RSAPrivateKeySerializer());
-        builder.registerTypeAdapter(RSAPrivateKey.class, new GsonSerializers.RSAPrivateKeyDeserializer());
+		builder.registerTypeHierarchyAdapter(RSAPublicKey.class, new RSAPublicKeySerializer());
+		builder.registerTypeHierarchyAdapter(RSAPublicKey.class, new RSAPublicKeyDeserializer());
+        builder.registerTypeHierarchyAdapter(RSAPrivateKey.class, new GsonSerializers.RSAPrivateKeySerializer());
+        builder.registerTypeHierarchyAdapter(RSAPrivateKey.class, new GsonSerializers.RSAPrivateKeyDeserializer());
 		gson = builder.create();
 	}
 

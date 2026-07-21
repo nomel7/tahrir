@@ -2,14 +2,15 @@ package tahrir.spring.controllers;
 
 import com.google.common.collect.Sets;
 import com.google.gson.reflect.TypeToken;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.testng.annotations.Test;
 import tahrir.TrNode;
 import tahrir.io.net.broadcasts.IncomingBroadcastMessageHandler;
 import tahrir.io.net.broadcasts.broadcastMessages.BroadcastMessage;
@@ -33,7 +34,7 @@ import static org.testng.Assert.assertTrue;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BroadcastMessagesControllerTest {
+public class BroadcastMessagesControllerTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private MockMvc mvc;
