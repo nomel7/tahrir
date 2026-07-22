@@ -8,7 +8,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>25</java.version>
 		<maven.compiler.release>25</maven.compiler.release>
-		<frontend.skip>true</frontend.skip>
+		<frontend.skip>false</frontend.skip>
 	</properties>
 
     <parent>
@@ -89,7 +89,7 @@
 			<plugin>
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.0.14</version>
+                <version>2.7.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -100,14 +100,40 @@
 				</executions>
                 <dependencies>
                     <dependency>
-                        <groupId>net.sf.proguard</groupId>
+                        <groupId>com.guardsquare</groupId>
                         <artifactId>proguard-base</artifactId>
-                        <version>6.0.3</version>
+                        <version>7.9.1</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.guardsquare</groupId>
+                        <artifactId>proguard-core</artifactId>
+                        <version>9.3.2</version>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
 				<configuration>
 					<options>
+						<option>-libraryjars ${java.home}/jmods/java.base.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.compiler.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.datatransfer.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.desktop.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.instrument.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.logging.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.management.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.management.rmi.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.naming.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.net.http.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.prefs.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.rmi.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.scripting.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.security.jgss.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.security.sasl.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.sql.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.sql.rowset.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.transaction.xa.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.xml.jmod(!**.jar;!module-info.class)</option>
+						<option>-libraryjars ${java.home}/jmods/java.xml.crypto.jmod(!**.jar;!module-info.class)</option>
 						<option>-allowaccessmodification</option>
                         <option>-microedition</option>
                         <option>-dontskipnonpubliclibraryclasses</option>
@@ -125,19 +151,17 @@
 					<injar>${project.build.finalName}-jar-with-dependencies.jar</injar>
 					<outjar>${project.build.finalName}-shrunk.jar</outjar>
                     <libs>
-                        <!-- Java runtime libraries are provided by the current JDK on Java 9+ -->
                         <!-- Third party libs -->
                         <lib>${settings.localRepository}/com/google/code/gson/gson/2.8.8/gson-2.8.8.jar</lib>
                         <lib>${settings.localRepository}/org/apache/commons/commons-math/2.2/commons-math-2.2.jar</lib>
                         <lib>${settings.localRepository}/args4j/args4j/2.0.16/args4j-2.0.16.jar</lib>
-                        <lib>${settings.localRepository}/org/testng/testng/5.14/testng-5.14.jar</lib>
                         <lib>${settings.localRepository}/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar</lib>
                         <lib>${settings.localRepository}/com/google/guava/guava/14.0-rc3/guava-14.0-rc3.jar</lib>
                         <!-- TODO This fails the build sometimes -->
                         <!--<lib>${settings.localRepository}/ch/qos/logback/logback-core/1.2.1/logback-core-1.2.1.jar</lib>-->
                         <lib>${settings.localRepository}/com/miglayout/miglayout/3.7.4/miglayout-3.7.4.jar</lib>
                         <lib>${settings.localRepository}/joda-time/joda-time/2.10.1/joda-time-2.10.1.jar</lib>
-                        <lib>${settings.localRepository}/com/google/inject/guice/3.0/guice-3.0.jar</lib>
+                        <lib>${settings.localRepository}/com/google/inject/guice/5.0.1/guice-5.0.1.jar</lib>
                         <lib>${settings.localRepository}/xom/xom/1.2.5/xom-1.2.5.jar</lib>
                         <lib>${settings.localRepository}/commons-codec/commons-codec/1.6/commons-codec-1.6.jar</lib>
                         <lib>${settings.localRepository}/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar</lib>
@@ -166,7 +190,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v16.10.0</nodeVersion>
+                            <nodeVersion>v22.23.0</nodeVersion>
                         </configuration>
                     </execution>
                     <execution>
@@ -175,7 +199,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>install</arguments>
+                            <arguments>install --legacy-peer-deps</arguments>
                         </configuration>
                     </execution>
                     <execution>

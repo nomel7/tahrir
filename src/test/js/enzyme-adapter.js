@@ -1,4 +1,4 @@
-import Enzyme from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import jasmineEnzyme from 'jasmine-enzyme';
 
@@ -8,4 +8,4 @@ beforeEach(() => {
     jasmineEnzyme();
 });
 
-export * from 'enzyme';
+export { mount, shallow };
