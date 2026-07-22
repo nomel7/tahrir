@@ -11,3 +11,6 @@ logback*.xml
 *.iws
 *.ipr
 .idea
+.classpath
+.project
+.classpath
