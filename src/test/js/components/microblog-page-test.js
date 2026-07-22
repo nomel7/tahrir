@@ -29,32 +29,32 @@ describe('MicroblogPage', () => {
 
     it('renders the header', () => {
         expect(wrapper.find('.microblog-page-name').length).toBe(1);
-        expect(wrapper.find('.microblog-page-name').get(0).textContent).toBe("John");
+        expect(wrapper.find('.microblog-page-name').at(0).text()).toBe("John");
     });
 
     it('renders the microblog messages', () => {
         const wrappedMessages = wrapper.find('.microblog-message');
         expect(wrappedMessages.length).toBe(3);
-        expect(wrappedMessages.get(0).textContent).toEqual('This is the first message');
-        expect(wrappedMessages.get(1).textContent).toEqual('This is the second message');
-        expect(wrappedMessages.get(2).textContent).toEqual('This is the third message');
+        expect(wrappedMessages.at(0).text()).toEqual('This is the first message');
+        expect(wrappedMessages.at(1).text()).toEqual('This is the second message');
+        expect(wrappedMessages.at(2).text()).toEqual('This is the third message');
     });
 
     it('renders the nicknames', () => {
         const wrappedNicknames = wrapper.find('.microblog-nickname');
         expect(wrappedNicknames.length).toBe(3);
-        expect(wrappedNicknames.get(0).textContent).toEqual('nomel7');
-        expect(wrappedNicknames.get(1).textContent).toEqual('sanity');
-        expect(wrappedNicknames.get(2).textContent).toEqual('Default');
+        expect(wrappedNicknames.at(0).text()).toEqual('nomel7');
+        expect(wrappedNicknames.at(1).text()).toEqual('sanity');
+        expect(wrappedNicknames.at(2).text()).toEqual('Default');
     });
 
 
     it('renders the timestamps', () => {
         const wrappedTimestamps = wrapper.find('.microblog-timestamp');
         expect(wrappedTimestamps.length).toBe(3);
-        expect(wrappedTimestamps.get(0).textContent).toEqual('');
-        expect(wrappedTimestamps.get(1).textContent).toEqual('1m');
-        expect(wrappedTimestamps.get(2).textContent).toEqual('2h');
+        expect(wrappedTimestamps.at(0).text()).toEqual('0s');
+        expect(wrappedTimestamps.at(1).text()).toEqual('1m');
+        expect(wrappedTimestamps.at(2).text()).toEqual('2h');
     });
 
     describe('when there is a filter', () => {
@@ -68,7 +68,7 @@ describe('MicroblogPage', () => {
         it('only renders the microblogs for that filter', () => {
             const wrappedMessages = wrapper.find('.microblog-message');
             expect(wrappedMessages.length).toBe(1);
-            expect(wrappedMessages.get(0).textContent).toEqual('This is the first message');
+            expect(wrappedMessages.at(0).text()).toEqual('This is the first message');
         });
     });
 
