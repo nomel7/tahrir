@@ -4,15 +4,22 @@ import React from "react";
 import Reflux from "reflux";
 import MicroblogPage from "./microblog-page"
 import Nav from "react-bootstrap/Nav";
-import NavItem from "react-bootstrap/NavItem";
 import TahrirStore from '../stores/tahrir-api-store';
 import {mentionsFilter} from "../helpers/microblog-filter";
 
-class Navigator extends Reflux.Component {
+class Navigator extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {activeKey: 1};
-        this.store = TahrirStore;
+        this.tahrirStore = Reflux.initStore(TahrirStore);
+        this.state = {activeKey: 1, ...this.tahrirStore.state};
+    }
+
+    componentDidMount() {
+        this.unsubscribe = this.tahrirStore.listen(state => this.setState(state));
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     onSelect = (eventKey) => {
@@ -33,10 +40,10 @@ class Navigator extends Reflux.Component {
             <div>
                 <header>
                     <h1>Tahrir</h1>
-                    <Nav bsStyle="pills" activeKey={activeKey} onSelect={this.onSelect}>
-                        <NavItem eventKey={1}>All</NavItem>
-                        <NavItem eventKey={2}>Following</NavItem>
-                        <NavItem eventKey={3}>Mentions</NavItem>
+                    <Nav variant="pills" activeKey={activeKey} onSelect={this.onSelect}>
+                        <Nav.Link eventKey={1}>All</Nav.Link>
+                        <Nav.Link eventKey={2}>Following</Nav.Link>
+                        <Nav.Link eventKey={3}>Mentions</Nav.Link>
                     </Nav>
                 </header>
                 <div className="content">

@@ -3,21 +3,21 @@
 import React from 'react';
 import PostForm from '../../../main/js/components/post-form';
 import Actions from '../../../main/js/actions/tahrir-api-actions';
-import {mount} from '../enzyme-adapter';
+import {render, fireEvent} from '../test-utils';
 
 describe('PostForm', () => {
-    let wrapper;
+    let container;
 
     beforeEach(() => {
-        wrapper = mount(<PostForm />);
+        ({container} = render(<PostForm />));
     });
 
     it('renders the form', () => {
-        expect(wrapper.find('input').length).toBe(1);
+        expect(container.querySelectorAll('input').length).toBe(1);
     });
 
     it('renders the button', () => {
-        expect(wrapper.find('button').length).toBe(1);
+        expect(container.querySelectorAll('button').length).toBe(1);
     });
 
     describe('when the post button is clicked', () => {
@@ -25,10 +25,8 @@ describe('PostForm', () => {
 
         beforeEach(() => {
             spyOn(Actions, 'postBroadcastMessage');
-            const textArea = wrapper.find('input');
-            textArea.simulate('change', {target: {value: message}});
-
-            wrapper.find('button').simulate('click');
+            fireEvent.change(container.querySelector('input'), {target: {value: message}});
+            fireEvent.click(container.querySelector('button'));
         });
 
         it('posts a message with the text area contents', () => {
@@ -36,8 +34,7 @@ describe('PostForm', () => {
         });
 
         it('clears the textarea', () => {
-            const textArea = wrapper.find('input');
-            expect(textArea.props().value).toBe('');
+            expect(container.querySelector('input').value).toBe('');
         });
     });
 

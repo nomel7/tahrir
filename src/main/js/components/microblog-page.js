@@ -8,15 +8,20 @@ import PostForm from "./post-form";
 import MicroblogAuthorPage from "./microblog-author-page";
 import MicroblogPost from "./microblog-post";
 
-class MicroblogPage extends Reflux.Component {
+class MicroblogPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {showAuthorPage: null};
-        this.store = TahrirAPIStore;
+        this.tahrirStore = Reflux.initStore(TahrirAPIStore);
+        this.state = {showAuthorPage: null, ...this.tahrirStore.state};
     }
 
     componentDidMount() {
+        this.unsubscribe = this.tahrirStore.listen(state => this.setState(state));
         APIActions.listBroadcastMessages();
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {

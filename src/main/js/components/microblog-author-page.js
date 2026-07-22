@@ -8,11 +8,19 @@ import TahrirUIStore from "../stores/tahrir-ui-store"
 import {authorFilter} from "../helpers/microblog-filter"
 import UIActions from "../actions/tahrir-ui-actions"
 
-class MicroblogAuthorPage extends Reflux.Component {
+class MicroblogAuthorPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
-        this.store = TahrirUIStore;
+        this.tahrirStore = Reflux.initStore(TahrirUIStore);
+        this.state = {...this.tahrirStore.state};
+    }
+
+    componentDidMount() {
+        this.unsubscribe = this.tahrirStore.listen(state => this.setState(state));
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     close = () => {

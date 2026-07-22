@@ -26,7 +26,7 @@ class PostForm extends React.Component {
     render() {
         return (
             <div className="post-form">
-                <Form inline>
+                <Form className="form-inline d-flex align-items-center gap-2">
                     <FormGroup>
                         <FormControl value={this.state.message} onChange={this.handleChange}
                                      placeholder="Message" />

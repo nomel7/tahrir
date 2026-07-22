@@ -1,7 +1,7 @@
 'use strict';
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./components/app"
 
 require('./scss');
@@ -14,7 +14,5 @@ class AppRender extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <AppRender />,
-    document.getElementById('react')
-);
+const root = createRoot(document.getElementById('react'));
+root.render(<AppRender />);

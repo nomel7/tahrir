@@ -1,29 +1,34 @@
 'use strict';
 
 import React from 'react';
-import {mount} from '../enzyme-adapter';
+import Reflux from 'reflux';
 import MicroblogAuthorPage from '../../../../src/main/js/components/microblog-author-page';
+import TahrirUIStore from '../../../../src/main/js/stores/tahrir-ui-store';
+import {render, act, screen} from '../test-utils';
 
 describe('MicroblogAuthorPage', () => {
-    let wrapper;
+    let store;
 
     beforeEach(() => {
-        wrapper = mount(<MicroblogAuthorPage />);
+        store = Reflux.initStore(TahrirUIStore);
+        store.setState({authorPage: {nickname: null}});
+        render(<MicroblogAuthorPage />);
     });
 
     it('hides the modal by default', () => {
-        expect(wrapper.find('Modal').first().props().show).toBe(false);
+        expect(screen.queryByText(/has made/)).toBeNull();
     });
 
     describe('when the author is set', () => {
         beforeEach(() => {
-            wrapper.setState({authorPage: {nickname: '@nomel7'}});
+            act(() => {
+                store.setState({authorPage: {nickname: '@nomel7'}});
+            });
         });
 
         it('shows the modal', () => {
-            expect(wrapper.find('Modal').first().props().show).toBe(true);
+            expect(screen.getByText('Posts @nomel7 has made')).not.toBeNull();
         });
     });
 
 });
-

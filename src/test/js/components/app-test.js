@@ -1,16 +1,21 @@
 'use strict';
 
 import React from 'react';
-import {mount} from '../enzyme-adapter';
+import Reflux from 'reflux';
 import App from '../../../../src/main/js/components/app'
 import Actions from '../../../../src/main/js/actions/tahrir-api-actions'
+import TahrirStore from '../../../../src/main/js/stores/tahrir-api-store';
+import {render, act} from '../test-utils';
 
 describe('App', () => {
-    let wrapper;
+    let container;
+    let store;
 
     beforeEach(() => {
         spyOn(Actions, 'getIdentity');
-        wrapper = mount(<App />);
+        store = Reflux.initStore(TahrirStore);
+        store.setState({identity: {nickname: null}});
+        ({container} = render(<App />));
     });
 
     it('updates the identity', () => {
@@ -18,28 +23,32 @@ describe('App', () => {
     });
 
     it('renders the login window', () => {
-        expect(wrapper.find('Login').length).toBe(1);
+        expect(container.querySelector('form')).not.toBeNull();
+        expect(container.querySelector('header')).toBeNull();
     });
 
     describe('when the user is Default', () => {
         beforeEach(() => {
-            wrapper.setState({identity: {nickname: 'Default'}});
+            act(() => {
+                store.setState({identity: {nickname: 'Default'}});
+            });
         });
 
         it('renders the login window', () => {
-            expect(wrapper.find('Login').length).toBe(1);
+            expect(container.querySelector('form')).not.toBeNull();
         });
     });
 
     describe('when the user is logged in', () => {
         beforeEach(() => {
-            wrapper.setState({identity: {nickname: '@nomel7'}});
+            act(() => {
+                store.setState({identity: {nickname: '@nomel7'}});
+            });
         });
 
         it('renders the navigator', () => {
-            expect(wrapper.find('Navigator').length).toBe(1);
+            expect(container.querySelector('header')).not.toBeNull();
         });
     });
 
 });
-

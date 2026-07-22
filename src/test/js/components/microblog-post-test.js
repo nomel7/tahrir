@@ -3,38 +3,38 @@
 import UIActions from '../../../main/js/actions/tahrir-ui-actions';
 import React from 'react';
 import MicroblogPost from '../../../main/js/components/microblog-post';
-import {mount} from '../enzyme-adapter';
+import {render, fireEvent} from '../test-utils';
 
 describe('MicroblogPost', () => {
-    let wrapper;
+    let container;
 
     beforeEach(() => {
         const props = {message: 'This is the first message', nickname: 'nomel7', timeCreated: new Date(Date.now() - 60 * 1000)};
-        wrapper = mount(<MicroblogPost {...props} />);
+        ({container} = render(<MicroblogPost {...props} />));
     });
 
     it('renders the microblog messages', () => {
-        const wrappedMessages = wrapper.find('.microblog-message');
+        const wrappedMessages = container.querySelectorAll('.microblog-message');
         expect(wrappedMessages.length).toBe(1);
-        expect(wrappedMessages.text()).toEqual('This is the first message');
+        expect(wrappedMessages[0].textContent).toEqual('This is the first message');
     });
 
     it('renders the nicknames', () => {
-        const wrappedNicknames = wrapper.find('.microblog-nickname');
+        const wrappedNicknames = container.querySelectorAll('.microblog-nickname');
         expect(wrappedNicknames.length).toBe(1);
-        expect(wrappedNicknames.text()).toEqual('nomel7');
+        expect(wrappedNicknames[0].textContent).toEqual('nomel7');
     });
 
     it('renders the timestamps', () => {
-        const wrappedTimestamps = wrapper.find('.microblog-timestamp');
+        const wrappedTimestamps = container.querySelectorAll('.microblog-timestamp');
         expect(wrappedTimestamps.length).toBe(1);
-        expect(wrappedTimestamps.text()).toEqual('1m');
+        expect(wrappedTimestamps[0].textContent).toEqual('1m');
     });
 
     describe('when a nickname is clicked', () => {
         beforeEach(() => {
             spyOn(UIActions, 'updateAuthorPage');
-            wrapper.find('.microblog-nickname').simulate('click');
+            fireEvent.click(container.querySelector('.microblog-nickname'));
         });
 
         it('displays the microblog author page', () => {
@@ -42,4 +42,3 @@ describe('MicroblogPost', () => {
         });
     });
 });
-

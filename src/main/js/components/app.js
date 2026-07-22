@@ -7,15 +7,20 @@ import Login from "./login"
 import Actions from "../actions/tahrir-api-actions";
 import TahrirStore from "../stores/tahrir-api-store";
 
-class App extends Reflux.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {identity: {nickname: null}};
-        this.store = TahrirStore;
+        this.tahrirStore = Reflux.initStore(TahrirStore);
+        this.state = {identity: {nickname: null}, ...this.tahrirStore.state};
     }
 
     componentDidMount() {
+        this.unsubscribe = this.tahrirStore.listen(state => this.setState(state));
         Actions.getIdentity();
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {

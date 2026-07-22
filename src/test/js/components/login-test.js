@@ -3,22 +3,21 @@
 import Actions from '../../../main/js/actions/tahrir-api-actions';
 import React from 'react';
 import Login from '../../../../src/main/js/components/login'
-import Button from "react-bootstrap/Button";
-import {mount} from '../enzyme-adapter';
+import {render, fireEvent} from '../test-utils';
 
 describe('Login', () => {
-    let wrapper;
+    let container;
 
     beforeEach(() => {
-        wrapper = mount(<Login />);
+        ({container} = render(<Login />));
     });
 
     it('renders create new user input', () => {
-        expect(wrapper.find('FormControl').length).toBe(1);
+        expect(container.querySelectorAll('input').length).toBe(1);
     });
 
     it('renders create new user button', () => {
-        expect(wrapper.find('Button').length).toBe(1);
+        expect(container.querySelectorAll('button').length).toBe(1);
     });
 
     describe('when the create new user button is clicked', () => {
@@ -26,9 +25,8 @@ describe('Login', () => {
 
         beforeEach(() => {
             spyOn(Actions, 'postIdentity');
-            const input = wrapper.find('input');
-            input.simulate('change', {target: {value: nickname}});
-            wrapper.find('button').simulate('click');
+            fireEvent.change(container.querySelector('input'), {target: {value: nickname}});
+            fireEvent.click(container.querySelector('button'));
         });
 
         it('creates a new user', () => {
@@ -36,5 +34,3 @@ describe('Login', () => {
         });
     });
 });
-
-
