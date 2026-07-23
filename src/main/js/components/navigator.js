@@ -6,6 +6,7 @@ import MicroblogPage from "./microblog-page"
 import Nav from "react-bootstrap/Nav";
 import TahrirStore from '../stores/tahrir-api-store';
 import {mentionsFilter} from "../helpers/microblog-filter";
+import {AllIcon, FollowingIcon, MentionsIcon} from "./icons";
 
 class Navigator extends React.Component {
     constructor(props) {
@@ -37,18 +38,21 @@ class Navigator extends React.Component {
         const display = tabs[activeKey];
 
         return (
-            <div>
-                <header>
-                    <h1>Tahrir</h1>
-                    <Nav variant="pills" activeKey={activeKey} onSelect={this.onSelect}>
-                        <Nav.Link eventKey={1}>All</Nav.Link>
-                        <Nav.Link eventKey={2}>Following</Nav.Link>
-                        <Nav.Link eventKey={3}>Mentions</Nav.Link>
+            <div className="app-shell">
+                <nav className="sidebar">
+                    <div className="sidebar-brand">
+                        <img src="/images/tahrir-logo.png" alt="" className="sidebar-logo" />
+                        <span className="sidebar-title">Tahrir</span>
+                    </div>
+                    <Nav variant="pills" className="flex-column sidebar-nav" activeKey={activeKey} onSelect={this.onSelect}>
+                        <Nav.Link eventKey={1}><AllIcon />All</Nav.Link>
+                        <Nav.Link eventKey={2}><FollowingIcon />Following</Nav.Link>
+                        <Nav.Link eventKey={3}><MentionsIcon />Mentions</Nav.Link>
                     </Nav>
-                </header>
-                <div className="content">
+                </nav>
+                <main className="content">
                     {display}
-                </div>
+                </main>
             </div>
         );
     }

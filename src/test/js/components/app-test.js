@@ -24,7 +24,7 @@ describe('App', () => {
 
     it('renders the login window', () => {
         expect(container.querySelector('form')).not.toBeNull();
-        expect(container.querySelector('header')).toBeNull();
+        expect(container.querySelector('.sidebar')).toBeNull();
     });
 
     describe('when the user is Default', () => {
@@ -47,7 +47,7 @@ describe('App', () => {
         });
 
         it('renders the navigator', () => {
-            expect(container.querySelector('header')).not.toBeNull();
+            expect(container.querySelector('.sidebar')).not.toBeNull();
         });
     });
 

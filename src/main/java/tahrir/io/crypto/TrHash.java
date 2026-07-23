@@ -7,8 +7,6 @@ import java.util.Arrays;
 
 import tahrir.io.serialization.*;
 
-import com.google.common.io.NullOutputStream;
-
 public class TrHash {
 	public byte[] hash;
 
@@ -21,7 +19,7 @@ public class TrHash {
 		try {
 			digest = MessageDigest.getInstance("SHA-256");
 			digest.reset();
-			final DataOutputStream digOS = new DataOutputStream(new DigestOutputStream(new NullOutputStream(), digest));
+			final DataOutputStream digOS = new DataOutputStream(new DigestOutputStream(OutputStream.nullOutputStream(), digest));
 			TrSerializer.serializeTo(toHash, digOS);
 			hash = digest.digest();
 		} catch (final NoSuchAlgorithmException e) {

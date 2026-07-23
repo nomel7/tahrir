@@ -39,7 +39,7 @@ class MicroblogAuthorPage extends React.Component {
 
         return (
             <Modal show={nickname !== null} onHide={this.close} animation={false}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton closeVariant="white">
                     <Modal.Title>Posts {nickname} has made</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

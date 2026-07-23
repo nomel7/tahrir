@@ -24,14 +24,25 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Form>
-                <FormGroup>
-                    <FormControl value={this.state.identity.nickname} onChange={this.handleChange} />
-                    <Button onClick={this.handleSubmit}>
-                        Create new user
-                    </Button>
-                </FormGroup>
-            </Form>
+            <div className="login-page">
+                <div className="login-card">
+                    <img src="/images/tahrir-logo.png" alt="" className="login-logo" />
+                    <h1 className="login-title">Tahrir</h1>
+                    <p className="login-subtitle">Anonymous microblogging</p>
+                    <Form>
+                        <FormGroup>
+                            <FormControl
+                                placeholder="Choose a nickname"
+                                value={this.state.identity.nickname}
+                                onChange={this.handleChange}
+                            />
+                            <Button onClick={this.handleSubmit}>
+                                Create new user
+                            </Button>
+                        </FormGroup>
+                    </Form>
+                </div>
+            </div>
         );
     }
 }

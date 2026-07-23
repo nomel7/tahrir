@@ -18,9 +18,9 @@ describe('Navigator', () => {
         ({container} = render(<Navigator />));
     });
 
-    it('renders the header', () => {
-       expect(container.querySelectorAll('header').length).toBe(1);
-       expect(container.querySelectorAll('h1').length).toBe(1);
+    it('renders the sidebar brand', () => {
+       expect(container.querySelectorAll('.sidebar').length).toBe(1);
+       expect(container.querySelector('.sidebar-title').textContent).toBe('Tahrir');
     });
 
     it('renders the navigation items', () => {

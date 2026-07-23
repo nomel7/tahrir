@@ -35,7 +35,7 @@ public class TrMain {
             throw new RuntimeException("Spring failed to launch application");
         }
 
-        System.out.println("main method complete");
+        System.out.println("App launch at: http://localhost:8080/");
 
     }
 

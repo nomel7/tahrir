@@ -27,7 +27,7 @@ class App extends React.Component {
         const {identity: {nickname}} = this.state;
         return (
             <div className="app">
-                {nickname !== null && nickname !== 'Default' ? <Navigator /> : <Login />}
+                {nickname !== null ? <Navigator /> : <Login />}
             </div>
         )
     }

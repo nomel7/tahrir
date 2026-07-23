@@ -1,21 +1,97 @@
-header {
-  position: fixed;
-  top: 0;
-  background-color: white;
-  width: 100%;
-  box-shadow: 0 1px 1px #858585;
+
+$body-bg: #0a0e14;
+$body-color: #e6e8eb;
+$primary: #2f8fe0;
+$secondary: #8b93a1;
+$border-color: #232935;
+$link-color: #2f8fe0;
+$link-hover-color: #55a6e8;
+
+$component-active-bg: #2f8fe0;
+$component-active-color: #ffffff;
+
+$input-bg: #10151c;
+$input-color: #e6e8eb;
+$input-border-color: #232935;
+$input-focus-bg: #10151c;
+$input-focus-border-color: #2f8fe0;
+$input-focus-color: #e6e8eb;
+$input-placeholder-color: #8b93a1;
+$input-border-radius: 6px;
+$border-radius: 6px;
+$border-radius-sm: 4px;
+$border-radius-lg: 8px;
+$btn-border-radius: 6px;
+
+$modal-content-bg: #10151c;
+$modal-content-border-color: #232935;
+$modal-header-border-color: #232935;
+$modal-backdrop-bg: #000000;
+$modal-backdrop-opacity: 0.75;
+
+$nav-pills-link-active-bg: #2f8fe0;
+$nav-link-color: #8b93a1;
+$nav-link-hover-color: #e6e8eb;
+
+$enable-shadows: false;
+$enable-gradients: false;
+
+@import "bootstrap/scss/bootstrap";
+
+:root {
+  --bg-primary: #0a0e14;
+  --bg-sidebar: #10151c;
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: rgba(47, 143, 224, 0.16);
+  --border-color: #232935;
+  --text-primary: #e6e8eb;
+  --text-secondary: #8b93a1;
+  --accent: #2f8fe0;
+  --accent-deep: #0d4a96;
+  --accent-hover: #55a6e8;
 }
 
-footer, .content {
-  background-color: white;
-  width: 720px;
-  margin: 0 auto;
+* {
+  box-sizing: border-box;
 }
 
-header {
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#react {
+  min-height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 6px;
+}
+
+.app {
+  min-height: 100%;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
 }
 
 .content {
-  border-radius: 5px 5px 0 0;
-  margin-top: 75px;
+  flex: 1;
+  min-width: 0;
+  background-color: var(--bg-primary);
+  border-left: 1px solid var(--border-color);
 }

@@ -38,9 +38,9 @@ public class IdentityController {
 
     @RequestMapping(value = "/api/identity", method = RequestMethod.POST)
     public ResponseEntity<?> postMessage(@RequestBody RestIdentity restIdentity) {
-        node.setCurrentIdentity(restIdentity.getNickname());
         UserIdentity identity = new UserIdentity(restIdentity.getNickname(), node.getRemoteNodeAddress().publicKey, Optional.of(node.getPrivateNodeId().privateKey));
         node.mbClasses.identityStore.addIdentityWithLabel(TrConstants.OWN, identity);
+        node.setCurrentIdentity(restIdentity.getNickname());
         return new ResponseEntity<String>("Success", HttpStatus.CREATED);
 
     }
